@@ -3,7 +3,7 @@ name: Sync to GitLab
 on:
   push:
     branches:
-      - main  # Change to your default branch if different
+      - newmain  # Change to your default branch if different
 
 jobs:
   sync:
@@ -15,12 +15,12 @@ jobs:
 
     - name: Set up Git
       run: |
-        git config --global user.name "${{ secrets.GIT_USER }}"
-        git config --global user.email "rastgooasma835@gmail.com"  # Change to your email
+        git config --global user.name "${{ secrets.GITLAB_USERNAME }}"
+        git config --global user.email "${{ secrets.GITLAB_EMAIL}}"  # Change to your email
 
     - name: Mirror to GitLab
       env:
-        GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
+        GITLAB_TOKEN: ${{ secrets.GIT_TOKEN }}
         GITLAB_REPO: ${{ secrets.GITLAB_REPO }}
       run: |
         # Add GitLab remote
