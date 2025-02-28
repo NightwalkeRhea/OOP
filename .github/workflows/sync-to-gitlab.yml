@@ -3,7 +3,7 @@ name: Sync to GitLab
 on:
   push:
     branches:
-      - main  # Change to your default branch if different
+      - newmain  # Change to your default branch if different
 
 jobs:
   sync:
