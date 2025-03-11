@@ -11,7 +11,7 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: Set up Git
       run: |
@@ -20,10 +20,10 @@ jobs:
 
     - name: Mirror to GitLab
       env:
-        GITLAB_TOKEN: ${{ secrets.GIT_TOKEN }}
+        GIT_TOKEN: ${{ secrets.GIT_TOKEN }}
         GITLAB_REPO: ${{ secrets.GITLAB_REPO }}
       run: |
         # Add GitLab remote
-        git remote add gitlab $GITLAB_REPO
+        git remote add gitlab "https://${GITLAB_TOKEN}@${GITLAB_REPO#https://}"
         # Push to GitLab
         git push --mirror gitlab
